@@ -18,7 +18,10 @@
     	<!-- more properties here -->
 		<derby.version>10.12.1.1</derby.version>
 		<org.apache.activemq>5.14.1</org.apache.activemq>
-    	
+		
+		<uid>mentor</uid>
+		<pwd>junk</pwd>
+		    	
 	</properties>
 
 	<build>
@@ -57,6 +60,29 @@
 				</executions>
 			</plugin>
 			
+			<plugin>
+			    <groupId>org.mule.tools.maven</groupId>
+			    <artifactId>mule-maven-plugin</artifactId>
+			    <version>2.0</version>
+			    <configuration>
+			        <deploymentType>cloudhub</deploymentType>
+			        <muleVersion>3.7.3</muleVersion>
+			        <username>${uid}</username>
+			        <password>${pwd}</password>
+				 <workerType>Micro</workerType>
+			        <redeploy>true</redeploy>
+			        <environment>Production</environment>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>deploy</id>
+			            <phase>deploy</phase>
+			            <goals>
+			                <goal>deploy</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
 			
 <!-- 			<plugin> -->
 <!-- 			    <groupId>org.mule.tools.maven</groupId> -->
@@ -101,7 +127,6 @@
 <!--         </execution> -->
 <!--     </executions> -->
 <!-- </plugin> -->
-
 			
 		</plugins>
 	</build>
